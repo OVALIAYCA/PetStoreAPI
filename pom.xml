@@ -100,6 +100,7 @@
                 <version>3.13.0</version>
             </plugin>
             <!--  Cucumber Reporting -->
+            <!--  Cucumber Reporting -->
             <plugin>
                 <!-- Run `mvn verify` and cucumber reports will be generated in target/cucumber-html-reports-->
                 <groupId>net.masterthought</groupId>
@@ -108,14 +109,12 @@
                 <executions>
                     <execution>
                         <id>execution</id>
-                        <!--                        <id>generate-cucumber-reports</id>-->
                         <phase>verify</phase>
                         <goals>
                             <goal>generate</goal>
                         </goals>
                         <configuration>
                             <projectName>cucumber-jvm-example</projectName>
-                            <!-- set this to "true" to bypass generation of Cucumber Reports-->
                             <skip>false</skip>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
