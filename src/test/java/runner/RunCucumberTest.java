@@ -16,6 +16,7 @@ import java.io.IOException;
         plugin = {"pretty",
                 "html:target/Cucumber-JVM-Reports/cucumber-reports/report.html",
                 "junit:target/Cucumber-JVM-Reports/cucumber-reports/cucumber.xml",
+                "json:target/cucumber-reports/Cucumber.json",
                 "json:target/json-report/cucumber.json",},
         //tags = "@UserOperations"
         tags = "@PutandUpdatePOJO"

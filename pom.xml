@@ -115,6 +115,7 @@
                         </goals>
                         <configuration>
                             <projectName>cucumber-jvm-example</projectName>
+                            <!-- set this to "true" to bypass generation of Cucumber Reports-->
                             <skip>false</skip>
                             <outputDirectory>${project.build.directory}</outputDirectory>
                             <inputDirectory>${project.build.directory}</inputDirectory>
