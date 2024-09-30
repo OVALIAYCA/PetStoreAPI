@@ -1,58 +1,46 @@
-name: petStoreAPI CI/CD
+name: Run Cucumber and PetStore Tests
 
 on:
   push:
-    branches: [ "main", "master" ]
+    branches:
+      - master
   pull_request:
-    branches: [ "main", "master" ]
-  workflow_dispatch:
+    branches:
+      - master
+  workflow_dispatch: {}
+
+concurrency:
+  group: "run-api-tests-${{ github.ref }}"
+  cancel-in-progress: true
 
 jobs:
-  build-and-test:
+  build:
     runs-on: ubuntu-latest
 
     env:
       FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
 
     steps:
-    - uses: actions/checkout@v3
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-    - name: Set up JDK 17
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'corretto'
-        cache: maven
+      - name: Set up JDK 17 and Maven
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'corretto'
+          cache: maven
+         
 
-    - name: Check Java version
-      run: java -version
+      - name: Build with Maven
+        run: mvn clean install
 
-    - name: Build with Maven
-      run: mvn clean install
+      - name: Run Cucumber tests
+        run: mvn test -Dtest=runner.RunCucumberTest
 
-    - name: Run tests
-      run: mvn test
-
-    - name: Generate Cucumber Reports
-      if: success() || failure()
-      run: mvn verify
-
-    - name: Upload Cucumber Report
-      uses: actions/upload-artifact@v3
-      if: always()
-      with:
-        name: cucumber-report
-        path: target/cucumber-reports/*
-
-    - name: Deploy to GitHub Pages
-      if: success() && github.ref == 'refs/heads/main'
-      uses: peaceiris/actions-gh-pages@v3
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_dir: ./target/cucumber-reports
-
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v2
-      if: always()
-      with:
-        files: "**/TEST-*.xml"
+      - name: Deploy to GitHub Pages
+        if: success()
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/Cucumber-JVM-Reports/cucumber-reports
