@@ -18,8 +18,8 @@ import java.io.IOException;
                 "junit:target/Cucumber-JVM-Reports/cucumber-reports/cucumber.xml",
                 "json:target/cucumber-reports/Cucumber.json",
                 "json:target/json-report/cucumber.json",},
-        //tags = "@UserOperations"
-        tags = "@PutandUpdatePOJO"
+        tags = "@UserOperations"
+        //tags = "@PutandUpdatePOJO"
 )
 public class RunCucumberTest {
     @AfterClass
