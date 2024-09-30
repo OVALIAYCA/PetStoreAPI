@@ -11,6 +11,9 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
+
     steps:
     - uses: actions/checkout@v3
 
@@ -39,7 +42,7 @@ jobs:
       if: always()
       with:
         name: cucumber-report
-        path: target/cucumber-reports
+        path: target/cucumber-reports/*
 
     - name: Deploy to GitHub Pages
       if: success() && github.ref == 'refs/heads/main'
