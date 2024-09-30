@@ -34,26 +34,22 @@ The project uses the following dependencies:
 - **Jakarta Validation**: For validating POJO fields.
 
 
-## Project Structure
-
-```
-src
-└──test
-   ├── java
-   │   └── stepDefs
-   │       └── PetStoreSteps.java
-   └── resources
-       └── features
-           └── user
-               └── post_user.feature
-```
-
 ## Running Tests
 
 To run the tests, use the following Maven command:
 
 ```sh
 mvn clean test
+```
+## Reporting
+
+The framework is configured to generate detailed Cucumber reports. These reports provide insights into test execution, including passed, failed, and skipped tests. The reports are generated in HTML format and can be found in the `target/cucumber-html-reports` directory after running the tests.
+
+To generate the reports, use the following Maven command:
+
+```sh
+mvn verify
+
 ```
 
 ## Test Scenarios
