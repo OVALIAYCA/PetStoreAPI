@@ -7,19 +7,18 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch: {}
+  workflow_dispatch:
 
 concurrency:
   group: "run-api-tests-${{ github.ref }}"
   cancel-in-progress: true
 
+env:
+  ACTIONS_ALLOW_UNSECURE_COMMANDS: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE20: true
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -34,7 +33,7 @@ jobs:
         run: mvn clean install
 
       - name: Run Cucumber tests
-        run: mvn test -Dtest=runner.RunCucumberTest
+        run: mvn test
 
       - name: Deploy to GitHub Pages
         if: success()
