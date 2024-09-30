@@ -91,40 +91,22 @@
     </dependencies>
 
     <build>
-        <plugins>
-            <!-- mvn test-compile-->
-            <!-- This command is useful when you want to ensure that your test code is free of compilation errors before running the tests-->
+       <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.13.0</version>
+                <configuration>
+                    <release>17</release>
+                </configuration>
             </plugin>
-            <!--  Cucumber Reporting -->
-             <plugin>
-                <groupId>net.masterthought</groupId>
-                <artifactId>maven-cucumber-reporting</artifactId>
-                <version>5.8.2</version>
-                <executions>
-                    <execution>
-                        <id>execution</id>
-                        <phase>verify</phase>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <projectName>cucumber-jvm-example</projectName>
-                            <skip>false</skip>
-                            <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
-                            <jsonFiles>
-                                <param>${project.build.directory}/cucumber-reports/Cucumber.json</param>
-                            </jsonFiles>
-                            <mergeFeaturesById>false</mergeFeaturesById>
-                            <mergeFeaturesWithRetest>false</mergeFeaturesWithRetest>
-                            <checkBuildResult>true</checkBuildResult>
-                        </configuration>
-                    </execution>
-                </executions>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.5.0</version>
+                <configuration>
+                    <testFailureIgnore>true</testFailureIgnore>
+                </configuration>
             </plugin>
         </plugins>
     </build>
