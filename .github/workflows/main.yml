@@ -35,6 +35,9 @@ jobs:
       - name: Run Cucumber tests
         run: mvn test -Dtest=runner.RunCucumberTest
 
+      - name: Copy test results to docs directory
+        run: cp -r target/surefire-reports docs/
+
       - name: Deploy to GitHub Pages
         if: success()
         uses: peaceiris/actions-gh-pages@v3
