@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="4.012" tests="4" skipped="0" failures="0" errors="0">
+<testcase classname="Create new user" name="Create new user successfully - Example #1.1" time="2.01">
+<system-out><![CDATA[
+Given the application is configured to connect to base url..................passed
+When The admin sends a POST request to the "user" endPoint with "1" and "testUser" and "test" and "test" and "test" and "123456" and "123456789" and "90".passed
+Then Verify that the content type is "application/json".....................passed
+And Verify that the status code is "200"....................................passed
+Then Verify that the response contains the required fields..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Create new user" name="Update user successfully - Example #1.1" time="0.556">
+<system-out><![CDATA[
+Given the application is configured to connect to base url..................passed
+When The admin sends a PUT request to the "user" endPoint with "10" and "testUser" and "updated" and "user" and "updated" and "654321" and "987654321" and "1".passed
+Then Verify that the content type is "application/json".....................passed
+And Verify that the status code is "200"....................................passed
+Then Verify that the response contains the required fields..................passed
+]]></system-out>
+</testcase>
+<testcase classname="Create new user" name="User is displayed successfully by name" time="0.655">
+<system-out><![CDATA[
+Given the application is configured to connect to base url..................passed
+When The admin sends a GET request to the "user" endpoint with user name "testUser".passed
+Then Verify that the status code is "200"...................................passed
+And Verify that the response userDetails contains required fields...........passed
+]]></system-out>
+</testcase>
+<testcase classname="Create new user" name="User is deleted successfully by name" time="0.649">
+<system-out><![CDATA[
+Given the application is configured to connect to base url..................passed
+When The admin sends a DELETE request to the "user" endpoint with query params "testUser".passed
+Then Verify that the status code is "200"...................................passed
+]]></system-out>
+</testcase>
+</testsuite>
